@@ -7,7 +7,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/forms/basic_elements.html">
+        <a class="nav-link" href="{{ url('admin/sales') }}">
           <i class="mdi mdi-sale menu-icon"></i>
           <span class="menu-title">Sales</span>
         </a>
@@ -26,13 +26,13 @@
         </div>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="{{ url('admin/products') }}">
           <i class="mdi mdi-database-plus menu-icon"></i>
           <span class="menu-title">Products</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="pages/tables/basic-table.html">
+        <a class="nav-link" href="{{ url('admin/brands') }}">
           <i class="mdi mdi-crown menu-icon"></i>
           <span class="menu-title">Brands</span>
         </a>
