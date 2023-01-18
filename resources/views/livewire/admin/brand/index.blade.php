@@ -35,9 +35,10 @@
                                     <td>{{ $brand->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
                                         <a class="btn btn-success"
-                                            href="{{ url('admin/brand/' . $brand->id . '/edit') }}">Edit</a>
+                                            href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
+                                            data-bs-target="#updateBrandModal" wire:click="editBrand({{ $brand->id }})">Edit</a>
                                         <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
-                                            data-bs-target="#deleteModal" wire:click="deleteCategory({{ $brand->id }})">Delete</a>
+                                            data-bs-target="#deleteBrandModal" wire:click="deleteBrand({{ $brand->id }})">Delete</a>
                                     </td>
                                 </tr>
                                 @empty

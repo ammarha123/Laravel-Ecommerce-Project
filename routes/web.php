@@ -37,11 +37,39 @@ Route::prefix('admin')->middleware(['auth','isAdm'])->group(function () {
         Route::post('category', 'store');
         Route::get('category/{category}/edit', 'edit');
         Route::put('category/{category}', 'update');
-
-    //Brand Routes
-        Route::get('brands', App\Http\Livewire\Admin\Brand\Index::class);
     });
-  
+    //Brand Routes
+    Route::get('brands', App\Http\Livewire\Admin\Brand\Index::class);
+
+    //Product Controller
+    Route::controller(App\Http\Controllers\admin\ProductController::class)->group(function () {
+        Route::get('products', 'index');
+        Route::get('products/create', 'create');
+        Route::post('products', 'store');
+        Route::get('products/{product}/edit', 'edit');
+        Route::put('products/{product}', 'update');
+        Route::get('products/{product_id}/delete', 'destroy');
+        Route::get('product-image/{product_image_id}/delete', 'destroyImage');
+        Route::post('product-color/{prod_color_id}', 'updateProductColorQty');
+        Route::get('product-color/{prod_color_id}/delete', 'deleteProductColor');
+    });
+
+    //Color Controller
+    Route::controller(App\Http\Controllers\admin\ColorController::class)->group(function () {
+        Route::get('color_section', 'index');
+        Route::get('color_section/create', 'create');
+        Route::post('color_section/create', 'store');
+        Route::get('color_section/{color}/edit', 'edit');
+        Route::put('color_section/{color}', 'update');
+        Route::get('color_section/{color}/delete', 'destroy');
+    });
+
+    //Slider Controller
+    Route::controller(App\Http\Controllers\admin\SliderController::class)->group(function () {
+        Route::get('sliders', 'index');
+        Route::get('sliders/create', 'create');
+        Route::post('sliders/create', 'store');
+    });
 });
 
 

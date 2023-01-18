@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Shitty Moron') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -58,6 +58,11 @@
     <script src="{{ asset ('admin/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset ('admin/js/dataTables.bootstrap4.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"></script>
+    <script src="jquery-3.6.1.min.js"></script>
+   
+    @yield('scripts')
+
     @livewireScripts
+    @stack('script')
 </body>
 </html>
