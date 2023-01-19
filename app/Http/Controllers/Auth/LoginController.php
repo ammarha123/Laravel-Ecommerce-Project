@@ -33,7 +33,7 @@ class LoginController extends Controller
             return redirect('/admin/dashboard')->with('status', 'Welcome to Dashboard');
         }
         else{
-            return redirect(('/home'))->with('status', 'login succesfully');
+            return redirect(('/'))->with('status', 'login succesfully');
         }
     }
     /**

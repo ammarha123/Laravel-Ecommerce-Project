@@ -49,14 +49,35 @@ class SliderController extends Controller
 
     public function update(SliderFormRequest $request,Sliders $slider)
     {
+        // $validatedData = $request->validated();
+        // if ($request->hasFile('image')) {
+
+        //     $path =  $slider->image;
+        //     if (File::exists($path)) {
+        //         File::delete($path);
+        //     }
+
+        //     $file = $request->file('image');
+        //     $ext = $file->getClientOriginalExtension();
+        //     $filename = time() . '.' . $ext;
+        //     $file->move('uploads/slider/', $filename);
+        //     $validatedData['image'] = "uploads/slider/$filename";
+        // }
+        // $validatedData['status'] = $request->status == true ? '1' : '0';
+        // Sliders::where('id',$slider->id)->update([
+        //     'title' => $validatedData['title'],
+        //     'description' => $validatedData['description'],
+        //     'image' => $validatedData['image'],
+        //     'status' => $validatedData['status']
+        // ]);
+        // return redirect('admin/sliders')->with('message', 'Slider Update Successfully');
         $validatedData = $request->validated();
         if ($request->hasFile('image')) {
 
             $path =  $slider->image;
-            if (File::exists($path)) {
-                File::delete($path);
-            }
-
+                if (File::exists($path)) {
+                    File::delete($path);
+                }
             $file = $request->file('image');
             $ext = $file->getClientOriginalExtension();
             $filename = time() . '.' . $ext;
@@ -67,10 +88,10 @@ class SliderController extends Controller
         Sliders::where('id',$slider->id)->update([
             'title' => $validatedData['title'],
             'description' => $validatedData['description'],
+            'status' => $validatedData['status'],
             'image' => $validatedData['image'],
-            'status' => $validatedData['status']
         ]);
-        return redirect('admin/sliders')->with('message', 'Slider Update Successfully');
+        return redirect('admin/sliders')->with('message', 'Slider Added Successfully');
     }
 
     public function destroy(int $slider_id)

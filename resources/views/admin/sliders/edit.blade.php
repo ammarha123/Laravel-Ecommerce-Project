@@ -24,6 +24,29 @@
                         </div>
                         <div class="mb-3">
                             <label for="description">Description</label>
+                            <textarea name="description" id=""  class="form-control" rows="3">{{ $slider->description }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" class="form-control">
+                            <h6 class="mt-3">Current Image: </h6>
+                            <div class="row">
+                                <div class="col-2">
+                                    <img src="{{ asset("$slider->image") }}" class="mt-2" style="width:100px" alt="Slider">
+                                </div>
+                            </div>     
+                        </div>
+                        <div class="mb-3">
+                            <input type="checkbox" name="status" {{ $slider->status ? 'checked':'' }}>
+                            <label for="name">Status</label>
+                            <br>Checked=Hidden, Unchecked=Visible
+                        </div>
+                        {{-- <div class="mb-3">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" value="{{ $slider->title }}" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="description">Description</label>
                             <textarea name="description" class="form-control" rows="3">{{ $slider->description }}</textarea>
                         </div>
                         <div class="mb-3">
@@ -40,7 +63,7 @@
                             <input type="checkbox" name="status" {{ $slider->status ? 'checked':'' }}>
                             <label for="name">Status</label>
                             <br>Checked=Hidden, Unchecked=Visible
-                        </div>
+                        </div> --}}
                         <button type="submit" class="btn btn-primary float-end">Save</button>
                     </form>
                 </div>
