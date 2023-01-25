@@ -22,6 +22,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Slug</th>
+                                <th>Category</th>
                                 <th>Status</th>
                                 <th>Action</th>
                             </tr>
@@ -32,16 +33,24 @@
                                     <td>{{ $brand->id }}</td>
                                     <td>{{ $brand->name }}</td>
                                     <td>{{ $brand->slug }}</td>
+                                    <td>
+                                        @if ($brand->category)
+                                            {{ $brand->category->name }}
+                                        @else
+                                            No Category
+                                        @endif
+                                    </td>
                                     <td>{{ $brand->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
-                                        <a class="btn btn-success"
-                                            href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
-                                            data-bs-target="#updateBrandModal" wire:click="editBrand({{ $brand->id }})">Edit</a>
-                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
-                                            data-bs-target="#deleteBrandModal" wire:click="deleteBrand({{ $brand->id }})">Delete</a>
+                                        <a class="btn btn-success" href="#" data-bs-toggle="modal"
+                                            data-bs-dismiss="modal" data-bs-target="#updateBrandModal"
+                                            wire:click="editBrand({{ $brand->id }})">Edit</a>
+                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal"
+                                            data-bs-dismiss="modal" data-bs-target="#deleteBrandModal"
+                                            wire:click="deleteBrand({{ $brand->id }})">Delete</a>
                                     </td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>No Record Found.</tr>
                             @endforelse
                         </tbody>

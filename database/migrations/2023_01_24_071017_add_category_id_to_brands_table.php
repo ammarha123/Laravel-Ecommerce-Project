@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('product_image', function (Blueprint $table) {
-            $table->string('image');
+        Schema::table('brands', function (Blueprint $table) {
+            $table->integer('category_id');
         });
     }
 
@@ -25,8 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('product_image', function (Blueprint $table) {
-            //
+        Schema::table('brands', function (Blueprint $table) {
+            $table->dropColumn('category_id');
         });
     }
 };

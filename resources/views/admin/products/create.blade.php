@@ -68,7 +68,7 @@
                                     <label for="category">Select brand</label>
                                     <select name="brand" class="form-control" id="">
                                         @foreach ($brands as $brand)
-                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                            <option value="{{ $brand->name }}">{{ $brand->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
