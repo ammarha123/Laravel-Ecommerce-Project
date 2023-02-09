@@ -6,13 +6,15 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Sliders;
 use App\Models\Category;
+use App\Models\Product;
 
 class FrontendController extends Controller
 {
     public function index()
     {
         $sliders = Sliders::where('status', '0')->get();
-        return view('frontend.index', compact('sliders'));
+        $trendingProducts = Product::where('trending', '1')->latest()->take(15)->get();
+        return view('frontend.index', compact('sliders', 'trendingProducts'));
     }
 
     public function categories()
@@ -47,5 +49,15 @@ class FrontendController extends Controller
 
     public function thankyou(){
         return view('frontend.thank-you');
+    }
+
+    public function newArrival(){
+        $newArrivalProducts = Product::latest()->take(16)->get();
+        return view('frontend.pages.new-arrival', compact('newArrivalProducts'));
+    }
+
+    public function featuredProduct(){
+        $featuredProduct = Product::where('featured', '1')->latest()->get();
+        return view('frontend.pages.feature-product', compact('featuredProduct'));
     }
 }

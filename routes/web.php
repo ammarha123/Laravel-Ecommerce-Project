@@ -22,6 +22,8 @@ Route::get('/',[App\Http\Controllers\Frontend\FrontendController::class, 'index'
 Route::get('/collections', [App\Http\Controllers\Frontend\FrontendController::class, 'categories']);
 Route::get('collections/{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'products']);
 Route::get('collections/{category_slug}/{product_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
+Route::get('/new-arrivals', [App\Http\Controllers\Frontend\FrontendController::class, 'newArrival ']);
+Route::get('/featured-product', [App\Http\Controllers\Frontend\FrontendController::class, 'featuredProduct']);
 
 //Wishlist
 Route::get('wishlist', [App\Http\Controllers\Frontend\WishlistController::class, 'index']);
@@ -34,8 +36,6 @@ Route::get('orders/{orderId}', [App\Http\Controllers\Frontend\OrderController::c
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 // Route::prefix('admin')->group(function () {
 
 //     Route::get('dashboard', [App\Http\Controllers\admin\DashboardController::class, 'index']);

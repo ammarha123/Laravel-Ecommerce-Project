@@ -2,13 +2,14 @@
 
 @section('title', 'cok')
 
-@section('content') 
+@section('content')
     <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
             @foreach ($sliders as $key => $sliderItem)
                 <div class="carousel-item {{ $key == '0' ? 'active' : '' }}">
                     @if ($sliderItem->image)
-                        <img src="{{ asset("$sliderItem->image") }}" class="d-block" style="width:100%;height:500px" alt="...">
+                        <img src="{{ asset("$sliderItem->image") }}" class="d-block" style="width:100%;height:500px"
+                            alt="...">
                     @endif
                     <div class="carousel-caption d-none d-md-block">
                         <h5>{{ $sliderItem->title }}</h5>
@@ -25,7 +26,89 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
         </button>
-    </div> 
+    </div>
+
+    <div class="py-5 bg-white">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 text-center">
+                    <h4>Welcome to Shitty Moron.</h4>
+                    <div class="underline mx-auto"></div>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
+                        et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+                        aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+                        culpa qui officia deserunt mollit anim id est laborum
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="py-5 bg-white">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>Trending Products</h4>
+                    <div class="underline mb-5"></div>
+                </div>
+                @if ($trendingProducts)
+                    <div class="col-md-12">
+                        <div class="owl-carousel owl-theme trending-product">
+                            @foreach ($trendingProducts as $productItem)
+                                <div class="item">
+                                    <div class="product-card">
+                                        <div class="product-card-img">
+                                            <a
+                                                href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
+
+                                                <label class="stock bg-danger">New</label>
+
+                                                @if ($productItem->productImages->count() > 0)
+                                                    <img src="{{ asset($productItem->productImages[0]->image) }}"
+                                                        alt="{{ $productItem->name }}" style="width: 100%; height: 300px">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <div class="product-card-body">
+                                            <p class="product-brand">{{ $productItem->brand }}</p>
+                                            <h5 class="product-name">
+                                                <a
+                                                    href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
+                                                    {{ $productItem->name }}
+                                                </a>
+                                            </h5>
+                                            <div>
+                                                <a
+                                                    href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
+                                                    <span class="selling-price">Rp {{ $productItem->selling_price }}</span>
+                                                    <span class="original-price">Rp
+                                                        {{ $productItem->original_price }}</span>
+                                                </a>
+                                            </div>
+                                            <div class="mt-2">
+                                                <a href="" class="btn btn1">Add To Cart</a>
+                                                <a href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}"
+                                                    class="btn btn1"> View </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @else
+                    <div class="col-md-12">
+                        <div class="p-2">
+                            <h4>
+                                No Available Products Availablie
+                            </h4>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
+    </div>
     {{-- <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-indicators">
           <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -64,4 +147,24 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div> --}}
+@endsection
+@section('script')
+    <script>
+        $('.trending-product').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 3
+                },
+                1000: {
+                    items: 4
+                }
+            }
+        })
+    </script>
 @endsection

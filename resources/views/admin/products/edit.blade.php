@@ -147,6 +147,13 @@
                                                 {{ $product->status == '1' ? 'checked' : '' }}>
                                         </div>
                                     </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="featured">Featured</label>
+                                            <input type="checkbox" name="featured"
+                                                {{ $product->featured == '1' ? 'checked' : '' }}>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="tab-pane fade" id="image" role="tabpanel" aria-labelledby="image-tab">
