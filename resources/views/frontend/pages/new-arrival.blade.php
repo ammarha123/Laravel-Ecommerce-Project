@@ -7,10 +7,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Featured Products</h4>
+                    <h4>New Arrival Products</h4>
                     <div class="underline mb-5"></div>
                 </div>  
-                    @forelse ($featuredProduct as $productItem)
+                    @forelse ($newArrivalProducts as $productItem)
                     <div class="col-md-3">
                         <div class="product-card">
                             <div class="product-card-img">
@@ -37,8 +37,8 @@
                                     <a
                                         href="{{ url('/collections/' . $productItem->category->slug . '/' . $productItem->slug) }}">
                                         <span class="selling-price">Rp {{ $productItem->selling_price }}</span>
-                                        <span class="original-price">Rp
-                                            {{ $productItem->original_price }}</span>
+                                        {{-- <span class="original-price">Rp
+                                            {{ $productItem->original_price }}</span> --}}
                                     </a>
                                 </div>
                                 <div class="mt-2">

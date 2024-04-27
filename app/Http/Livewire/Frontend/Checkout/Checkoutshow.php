@@ -10,17 +10,17 @@ use Illuminate\Support\Str;
 
 class Checkoutshow extends Component
 {
-    public $carts, $totalProductAmount = 0;
+    public $carts, $totalProductAmount, $totalProfit = 0;
 
     public $fullname, $email, $phone, $pincode, $address, $paymentMode = NULL, $paymentID = NULL;
 
     public function rules(){
         return [
             'fullname' => 'required|string|max:121',
-            'email' => 'required|email|max:121',
+            'email' => 'nullable|email|max:121',
             'phone' => 'required|string|max:13|min:10',
-            'pincode' => 'required|string|max:6|min:6',
-            'address' => 'required|string|max:500',
+            'pincode' => 'nullable|string|max:6|min:6',
+            'address' => 'nullable|string|max:500',
         ];
     }
 
@@ -45,9 +45,11 @@ class Checkoutshow extends Component
                 'product_id' => $cartItem->product_id,
                 'product_color_id'  => $cartItem->product_color_id,
                 'quantity'  => $cartItem->quantity,
-                'price'  => $cartItem->product->selling_price
+                'price'  => $cartItem->product->selling_price,
+                'original_price' => $cartItem->product->original_price
             ]);
             $this->totalProductAmount += $cartItem->product->selling_price * $cartItem->quantity;
+            $this->totalProfit += $cartItem->product->selling_price * $cartItem->quantity - $cartItem->product->original_price * $cartItem->quantity;
             
             if($cartItem -> product_color_id != NULL){
                 $cartItem->productColor()->where('id', $cartItem->product_color_id)->decrement('quantity',$cartItem->quantity);
@@ -72,6 +74,33 @@ class Checkoutshow extends Component
             session()->flash('message', 'Error.');
         }
     }
+
+    public function shopeeOrder(){
+        $this->paymentMode = 'Shopee';
+        $shopeeOrder = $this->placeOrder();
+        if($shopeeOrder){
+            Cart::where('user_id', auth()->user()->id)->delete();
+            session()->flash('message', 'Order Placed Successfully');
+            return redirect()->to('thank-you');
+        }
+
+        else{
+            session()->flash('message', 'Error.');
+        }
+    }
+    public function tokopediaOrder(){
+        $this->paymentMode = 'Tokopedia';
+        $tokopediaOrder = $this->placeOrder();
+        if($tokopediaOrder){
+            Cart::where('user_id', auth()->user()->id)->delete();
+            session()->flash('message', 'Order Placed Successfully');
+            return redirect()->to('thank-you');
+        }
+
+        else{
+            session()->flash('message', 'Error.');
+        }
+    }
     public function totalProductAmount(){
         $this->totalProductAmount = 0;
         $this->carts = Cart::where('user_id', auth()->user()->id) -> get();
@@ -79,6 +108,15 @@ class Checkoutshow extends Component
             $this->totalProductAmount += $cartItem->product->selling_price * $cartItem->quantity;
         }
         return $this->totalProductAmount;
+    }
+
+    public function totalProfit(){
+        $this->totalProfit = 0;
+        $this->carts = Cart::where('user_id', auth()->user()->id) -> get();
+        foreach($this->carts as $cartItem){
+            $this->totalProfit += $cartItem->product->selling_price * $cartItem->quantity - $cartItem->product->original_price * $cartItem->quantity;
+        }
+        return $this->totalProfit;
     }
     public function render()
     {

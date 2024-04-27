@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('title', 'tes') }}</title>
+    <title>{{ config('title', 'Jastipinai Admin') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -57,12 +57,30 @@
     <script src="{{ asset ('admin/js/data-table.js') }}"></script>
     <script src="{{ asset ('admin/js/jquery.dataTables.js') }}"></script>
     <script src="{{ asset ('admin/js/dataTables.bootstrap4.js') }}"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.min.js"></script>
-    <script src="jquery-3.6.1.min.js"></script>
-   
+     {{-- <script src="jquery-3.6.1.min.js"></script> --}}
     @yield('scripts')
+    <script>
+         $(document).ready(function() {
+        // Function to calculate and update RP
+        function updateRP() {
+            var originalPriceRM = $(".original_price_rm").val();
+            var exchangeRate = 3400;
+            var originalPriceRP = originalPriceRM * exchangeRate;
+            $(".original_price").val(originalPriceRP);
+        }
 
+        // Trigger calculation when input changes
+        $(".original_price_rm").on('input', function() {
+            updateRP();
+        });
+        // Calculate RP when the page loads
+        updateRP();
+    });
+    </script>
     @livewireScripts
+    <!-- Your custom script -->
     @stack('script')
 </body>
 </html>

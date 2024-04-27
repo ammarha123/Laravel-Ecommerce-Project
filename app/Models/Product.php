@@ -20,6 +20,7 @@ class Product extends Model
         'small_description',
         'description',
         'original_price',
+        'original_price_rm',
         'selling_price',
         'quantity',
         'trending',

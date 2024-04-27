@@ -99,8 +99,15 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
-                                            <label for="original_price">Original Price</label>
-                                            <input type="text" name="original_price" class="form-control"
+                                            <label for="original_price">Original Price (RM)</label>
+                                            <input type="text" name="original_price_rm" class="form-control original_price_rm"
+                                                >
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
+                                            <label for="original_price">Original Price (RP)</label>
+                                            <input type="text" name="original_price" class="form-control original_price"
                                                 id="">
                                         </div>
                                     </div>
@@ -151,11 +158,14 @@
                                         @forelse ($colors as $coloritem)
                                             <div class="col-md-2">
                                                 <div class="p-2 border border-3 mt-3 mb-3 border-dark">
-                                                    Color: <input type="checkbox" name="colors[{{ $coloritem->id }}]" value="{{ $coloritem->id }}">
+                                                    Color: <input type="checkbox" name="colors[{{ $coloritem->id }}]"
+                                                        value="{{ $coloritem->id }}">
                                                     {{ $coloritem->name }} <br>
-                                                    Quantity: <input type="number" name="itemquantity[{{ $coloritem->id }}]" style="width: 70px; border:1px solid">
+                                                    Quantity: <input type="number"
+                                                        name="itemquantity[{{ $coloritem->id }}]"
+                                                        style="width: 70px; border:1px solid">
                                                 </div>
-                                               
+
                                             </div>
                                         @empty
                                             <div class="col-md-12">

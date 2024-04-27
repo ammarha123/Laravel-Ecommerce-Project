@@ -4,8 +4,8 @@
 
 @section('content') 
 
-<div class="py-3 py-md-5">
-    <div class="container">
+<div class="py-1 py-md-1">
+    <div class="">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -56,7 +56,10 @@
                                             <td>{{ $Orderitem->payment_mode }}</td>
                                             <td>{{ $Orderitem->created_at->format('d-m-Y') }}</td>
                                             <td>{{ $Orderitem->status_message }}</td>
-                                            <td><a href="{{ url('admin/order/'.$Orderitem->id) }}" class="btn btn-primary btn-sm">View</a></td>
+                                            <td>
+                                                <a href="{{ url('admin/order/'.$Orderitem->id) }}" class="btn btn-primary btn-sm">View</a>
+                                            </td>
+                                            <td></td>
                                         </tr>
                                     @empty
                                         <tr>

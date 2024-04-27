@@ -22,8 +22,9 @@ Route::get('/',[App\Http\Controllers\Frontend\FrontendController::class, 'index'
 Route::get('/collections', [App\Http\Controllers\Frontend\FrontendController::class, 'categories']);
 Route::get('collections/{category_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'products']);
 Route::get('collections/{category_slug}/{product_slug}', [App\Http\Controllers\Frontend\FrontendController::class, 'productView']);
-Route::get('/new-arrivals', [App\Http\Controllers\Frontend\FrontendController::class, 'newArrival ']);
+Route::get('/newArrivals', [App\Http\Controllers\Frontend\FrontendController::class, 'newArrivals']);
 Route::get('/featured-product', [App\Http\Controllers\Frontend\FrontendController::class, 'featuredProduct']);
+Route::get('/search',  [App\Http\Controllers\Frontend\FrontendController::class, 'searchProduct']);
 
 //Wishlist
 Route::get('wishlist', [App\Http\Controllers\Frontend\WishlistController::class, 'index']);
@@ -44,6 +45,8 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::prefix('admin')->middleware(['auth','isAdm'])->group(function () {
     Route::get('dashboard', [App\Http\Controllers\DashboardController::class, 'index']);
+    Route::get('settings', [App\Http\Controllers\admin\SettingController::class, 'index']);
+    Route::post('settings', [App\Http\Controllers\admin\SettingController::class, 'store']);
     //Category Routes
     Route::controller(App\Http\Controllers\admin\CategoryController::class)->group(function () {
         Route::get('category', 'index');
@@ -92,14 +95,27 @@ Route::prefix('admin')->middleware(['auth','isAdm'])->group(function () {
     Route::controller(App\Http\Controllers\admin\OrderController::class)->group(function () {
         Route::get('order', 'index');
         Route::get('/order/{orderId}', 'show');
-        Route::put('/order/{orderId}', 'updateOrderStatus');
+        Route::put('/order/{orderId}', 'updateOrder');
         Route::get('/invoice/{orderId}', 'viewInvoice');
         Route::get('/invoice/{orderId}/generate', 'generateInvoice');
+        Route::put('/order/{orderId}/edit', 'edit');
+        // Route::put('/order/{orderId}', 'update');
         // Route::get('sliders/create', 'create');
         // Route::post('sliders/create', 'store');
         // Route::get('sliders/{slider}/edit', 'edit');
         // Route::put('sliders/{slider}', 'update');
         // Route::get('sliders/{slider}/delete', 'destroy');
+    });
+
+    Route::controller(App\Http\Controllers\admin\UserController::class)->group(function () {
+        Route::get('/users', 'index');
+        Route::get('/users/create', 'create');
+        Route::post('users', 'store');
+        Route::get('users/{user_id}/edit', 'edit');
+        Route::put('users/{user_id}', 'update');
+        Route::get('users/{user_id}/delete', 'destroy');
+        Route::get('users/change-password', 'passwordCreate');
+        Route::post('users/change-password', 'changePassword');
     });
 });
 

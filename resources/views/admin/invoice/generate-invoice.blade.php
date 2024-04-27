@@ -122,7 +122,7 @@
             </tr>
             <tr>
                 <td>Payment Mode:</td>
-                <td>Cash on Delivery</td>
+                <td>{{ $order->payment_mode }}</td>
 
                 <td>Address:</td>
                 <td>{{ $order->address }}</td>

@@ -11,11 +11,19 @@
             <div class="card">
                 <div class="card-header">
                     <h3>Products
-                        <a href="{{ url('admin/products/create') }}" class="btn btn-primary text-white float-end">Add
-                            Product</a>
-                    </h3>
+                        <div class="row my-2">
+                            <div class="col-6">
+                                <a href="{{ url('/') }}" class="btn btn-dark text-white">View User Page</a>
+                            </div>
+                            <div class="col-6">
+                                <a href="{{ url('admin/products/create') }}" class="btn btn-primary text-white">Add
+                                    Product</a>
+                            </div>
+                        </div>
+                    </h3>  
                 </div>
                 <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered table striped">
                         <thead>
                             <tr>
@@ -44,7 +52,7 @@
                                     <td>{{ $product->quantity }}</td>
                                     <td>{{ $product->status == '1' ? 'Hidden' : 'Visible' }}</td>
                                     <td>
-                                        <a class="btn btn-sm btn-success"
+                                        <a class="btn btn-sm btn-success my-2"
                                             href="{{ url('admin/products/' . $product->id . '/edit') }}">Edit</a>
                                         <a class="btn btn-sm btn-danger" onclick="return confirm('Are you sure want to delete this product?')" href="{{ url('admin/products/' . $product->id . '/delete') }}" >Delete</a>
                                     </td>
@@ -54,6 +62,7 @@
                             @endforelse
                         </tbody>
                     </table>
+                    </div>
                     <div>
                         {{-- {{ $product->links() }} --}}
                     </div>

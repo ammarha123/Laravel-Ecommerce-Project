@@ -58,11 +58,8 @@
         </a>
         <div class="collapse" id="auth">
           <ul class="nav sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login.html"> Login </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/login-2.html"> Login 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register.html"> Register </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/register-2.html"> Register 2 </a></li>
-            <li class="nav-item"> <a class="nav-link" href="pages/samples/lock-screen.html"> Lockscreen </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users/create') }}"> Add User </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ url('admin/users') }}">  View User </a></li>
           </ul>
         </div>
       </li>
@@ -73,7 +70,7 @@
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="documentation/documentation.html">
+        <a class="nav-link" href="#">
           <i class="mdi mdi-settings-box menu-icon"></i>
           <span class="menu-title">Side Setting</span>
         </a>

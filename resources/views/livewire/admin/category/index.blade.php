@@ -38,31 +38,33 @@
                     </h3>
                 </div>
                 <div class="card-body">
-                    <table class="table table-bordered table striped">
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach ($categories as $category)
+                    <div class="table-responsive">
+                        <table class="table table-bordered table striped">
+                            <thead>
                                 <tr>
-                                    <td>{{ $category->id }}</td>
-                                    <td>{{ $category->name }}</td>
-                                    <td>{{ $category->status == '1' ? 'Hidden' : 'Visible' }}</td>
-                                    <td>
-                                        <a class="btn btn-success"
-                                            href="{{ url('admin/category/' . $category->id . '/edit') }}">Edit</a>
-                                        <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
-                                            data-bs-target="#deleteModal" wire:click="deleteCategory({{ $category->id }})">Delete</a>
-                                    </td>
+                                    <th>ID</th>
+                                    <th>Name</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @foreach ($categories as $category)
+                                    <tr>
+                                        <td>{{ $category->id }}</td>
+                                        <td>{{ $category->name }}</td>
+                                        <td>{{ $category->status == '1' ? 'Hidden' : 'Visible' }}</td>
+                                        <td>
+                                            <a class="btn btn-success my-2"
+                                                href="{{ url('admin/category/' . $category->id . '/edit') }}">Edit</a>
+                                            <a class="btn btn-danger" href="#" data-bs-toggle="modal" data-bs-dismiss="modal"
+                                                data-bs-target="#deleteModal" wire:click="deleteCategory({{ $category->id }})">Delete</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div>
                         {{ $categories->links() }}
                     </div>

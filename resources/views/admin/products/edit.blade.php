@@ -56,12 +56,8 @@
                                     <label for="category">Category</label>
                                     <select name="category_id" class="form-control" id="">
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}"
-                                                {{ $category->category_id == $product->category_id ? 'selected' : '' }}>
-                                                {{ $category->name }}
-                                            </option>
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
                                         @endforeach
-
                                     </select>
                                 </div>
                                 <div class="mb-3">
@@ -78,12 +74,12 @@
                                     <label for="category">Select brand</label>
                                     <select name="brand" class="form-control" id="">
                                         @foreach ($brands as $brand)
-                                            <option value="{{ $brand->name }}"
-                                                {{ $brand->id == $product->brand ? 'selected' : '' }}>{{ $brand->name }}
+                                            <option value="{{ $brand->id }}" {{ $brand->id == $product->brand ? 'selected' : '' }}>
+                                                {{ $brand->name }}
                                             </option>
                                         @endforeach
                                     </select>
-                                </div>
+                                </div>                                
                                 <div class="mb-3">
                                     <label for="small_description">Small Description (500 Words)</label>
                                     <textarea name="small_description" class="form-control" rows="4">{{ $product->small_description }}</textarea>
@@ -112,9 +108,16 @@
                                 <div class="row">
                                     <div class="col-md-4">
                                         <div class="mb-3">
+                                            <label for="original_price">Original Price (RM)</label>
+                                            <input type="text" value="{{ $product->original_price_rm }}"  name="original_price_rm" class="form-control original_price_rm"
+                                                id="">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <div class="mb-3">
                                             <label for="original_price">Original Price</label>
                                             <input type="text" name="original_price"
-                                                value="{{ $product->original_price }}" class="form-control"
+                                                value="{{ $product->original_price }}" class="form-control original_price"
                                                 id="">
                                         </div>
                                     </div>

@@ -28,7 +28,7 @@
                         </p>
                         <div>
                             <span class="selling-price">Rp {{ $product->selling_price }}</span>
-                            <span class="original-price">Rp {{ $product->original_price }}</span>
+                            {{-- <span class="original-price">Rp {{ $product->original_price }}</span> --}}
                         </div>
                         <div class="mt-2">
                             @if ($product->productColors->count() > 0)

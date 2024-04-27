@@ -62,7 +62,7 @@
                                 <div>
                                     <a href="{{ url('/collections/'.$productItem->category->slug.'/'.$productItem->slug) }}">
                                     <span class="selling-price">Rp {{ $productItem->selling_price }}</span>
-                                    <span class="original-price">Rp {{ $productItem->original_price }}</span>
+                                    {{-- <span class="original-price">Rp {{ $productItem->original_price }}</span> --}}
                                     </a>
                                 </div>
                                 <div class="mt-2">

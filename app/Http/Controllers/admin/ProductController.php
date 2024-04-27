@@ -13,6 +13,7 @@ use App\Models\Product;
 use Illuminate\Support\Str;
 use App\Models\ProductColor;
 use App\Models\Color;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -44,9 +45,8 @@ class ProductController extends Controller
     public function update(ProductFormRequest $request, int $product_id)
     {
         $validatedData = $request->validated();
-        $product = Category::findOrFail($validatedData['category_id'])
-            ->products()->where('id', $product_id)->first();
-
+        $product = Product::findOrFail($product_id);
+        
         if ($product) {
             $product->update([
                 'category_id' => $validatedData['category_id'],
@@ -56,6 +56,7 @@ class ProductController extends Controller
                 'small_description' => $validatedData['small_description'],
                 'description' => $validatedData['description'],
                 'original_price' => $validatedData['original_price'],
+                'original_price_rm' => $validatedData['original_price_rm'],
                 'selling_price' => $validatedData['selling_price'],
                 'quantity' => $validatedData['quantity'],
                 'trending' => $request->trending == true ? '1' : '0',
@@ -132,6 +133,7 @@ class ProductController extends Controller
             'small_description' => $validatedData['small_description'],
             'description' => $validatedData['description'],
             'original_price' => $validatedData['original_price'],
+            'original_price_rm' => $validatedData['original_price_rm'],
             'selling_price' => $validatedData['selling_price'],
             'quantity' => $validatedData['quantity'],
             'trending' => $request->trending == true ? '1' : '0',

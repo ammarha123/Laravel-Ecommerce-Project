@@ -95,6 +95,8 @@
         <main class="">
             @yield('content')
         </main>
+
+        @include('layouts.inc.frontend.footer')
     </div>
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>

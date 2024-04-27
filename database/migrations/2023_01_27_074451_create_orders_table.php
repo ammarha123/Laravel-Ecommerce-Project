@@ -18,10 +18,10 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('tracking_no');
             $table->string('fullname');
-            $table->string('email');
+            $table->string('email')->nullable();
             $table->string('phone');
-            $table->string('pincode');
-            $table->mediumText('address');
+            $table->string('pincode')->nullable();
+            $table->mediumText('address')->nullable();
             $table->string('status_message');
             $table->string('payment_mode');
             $table->string('payment_id')->nullable();
